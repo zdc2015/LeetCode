@@ -117,7 +117,54 @@ public class Solution {
 		return head;
 	}
 	
+	/*
+	 * Partition List
+	 * 给定一个链表和一个特定值 x，对链表进行分隔，使得所有小于 x 的节点都在大于或等于 x 的节点之前。
+	 * 你应当保留两个分区中每个节点的初始相对位置。
+	 * 
+	 * 思路：设置两个空链表，一个放小于x的结点，另一个放大于等于x的结点
+	 */
 	
+	static ListNode partitionList(ListNode head, int x) {
+		ListNode lessX = new ListNode(0);
+		ListNode noLessX = new ListNode(0);
+		ListNode lp = lessX;
+		ListNode nlp = noLessX;
+		ListNode p = head;
+		
+		while(p!=null) {
+			if(p.val<x) {
+				lp.next = p;
+				lp = p;
+			}else {
+				nlp.next = p;
+				nlp = p;
+			}
+			p = p.next;
+		}
+		lp.next = noLessX.next;
+		nlp.next = null;
+		return lessX.next;
+	}
+	
+	/*
+	 * Remove Duplicates from Sorted List
+	 * Given a sorted linked list, delete all duplicates such that each element appear only once.
+	 * 
+	 * 设置两个指针进行比较，遍历一遍即可
+	 */
+	static ListNode deleteDuplicates(ListNode head) {
+        if (head == null) return null;
+
+        for (ListNode prev = head, cur = head.next; cur != null; cur = prev.next) {
+            if (prev.val == cur.val) {
+                prev.next = cur.next;
+            } else {
+                prev = cur;
+            }
+        }
+        return head;
+    }
 	
 
 	public static void main(String[] args) {
