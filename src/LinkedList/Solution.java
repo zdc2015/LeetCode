@@ -166,10 +166,40 @@ public class Solution {
         return head;
     }
 	
+	/*
+	 * Given a linked list, swap every two adjacent nodes and return its head.
+
+For example, Given 1->2->3->4, you should return the list as 2->1->4->3.
+Your algorithm should use only constant space. You may not modify the values in the list, only nodes itself can be changed.
+
+直接模拟，设置头结点，两个指针，pre指向两两交换的上一个，p指向两两交换的第一个，画图容易理解
+递归也可以做
+	 */
+	static ListNode swapPairs(ListNode head) {
+		ListNode newHead = new ListNode(0);
+		ListNode pre = newHead;
+		ListNode p = head;
+		
+		if(head==null||head.next==null) return head;
+		
+		while(p!=null && p.next!=null) {
+			pre.next = p.next;
+			p.next = p.next.next;
+			pre.next.next = p;
+			pre = p;
+			p = p.next;
+		}
+		
+		return newHead.next;
+	}
+	
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-
+		int[] a = new int[]{1,2,3,4,5};
+		ListNode head = createNode(a);
+		print(head);
+		head = swapPairs(head);
+		print(head);
 	}
 
 }
