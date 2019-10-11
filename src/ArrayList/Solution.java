@@ -21,15 +21,23 @@ public class Solution {
 		Map<Integer, Integer> map = new HashMap<>();
 		int[] ans = new int[2];
 		for(int i=0;i<nums.length;i++) {
-			if(!map.containsKey(nums[i])) {
-				map.put(nums[i], i);
-			}
 			int t = target - nums[i];
 			if(map.containsKey(t)) {
 				ans[0] = map.get(t);
 				ans[1] = i;
 				return ans;
 			}
+			if(!map.containsKey(nums[i])) {
+				map.put(nums[i], i);
+			}
+			/* wrong，检查对应数不能放在后边，要是nums[i]是target的一半，那么就重复了
+			int t = target - nums[i];
+			if(map.containsKey(t)) {
+				ans[0] = map.get(t);
+				ans[1] = i;
+				return ans;
+			}
+			*/
 		}
 		return null;
 	}
