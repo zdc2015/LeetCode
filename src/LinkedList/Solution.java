@@ -51,14 +51,14 @@ public class Solution {
         }
     }
 	
-	//ÕûÌåË¼Â·ÊÇÒ»±éÉ¨Ãè£¬µ±É¨Ãèµ½µ×m¸öÊ±£¬¿ªÊ¼Äæ×ª£¬°Ñµ±Ç°½áµãµÄnextÖ¸ÏòÉÏÒ»¸ö£¬µ±´ÓµÚm¸öÄæ×ªµ½µÚn¸öÊ±£¬¿ªÊ¼ÏÎ½ÓÕâ¶ÎÄæ×ªµÄÁ´±í
+	//æ•´ä½“æ€è·¯æ˜¯ä¸€éæ‰«æï¼Œå½“æ‰«æåˆ°åº•mä¸ªæ—¶ï¼Œå¼€å§‹é€†è½¬ï¼ŒæŠŠå½“å‰ç»“ç‚¹çš„nextæŒ‡å‘ä¸Šä¸€ä¸ªï¼Œå½“ä»ç¬¬mä¸ªé€†è½¬åˆ°ç¬¬nä¸ªæ—¶ï¼Œå¼€å§‹è¡”æ¥è¿™æ®µé€†è½¬çš„é“¾è¡¨
 	public ListNode reverseBetween(ListNode head, int m, int n) {
 		if(head==null || m==n) return head;
 		
 		ListNode p = head;
 		ListNode pre_p = null;
-		ListNode pre_m = null;//Ö¸ÏòµÚm-1¸ö½áµã
-		ListNode first = null;//Ö¸ÏòµÚm¸ö½áµã
+		ListNode pre_m = null;//æŒ‡å‘ç¬¬m-1ä¸ªç»“ç‚¹
+		ListNode first = null;//æŒ‡å‘ç¬¬mä¸ªç»“ç‚¹
 		
 		for(int i=1;i<=n;i++) {
 			if(i==m-1) pre_m = p;
@@ -68,9 +68,9 @@ public class Solution {
 				p.next = pre_p;
 				pre_p = p;
 				p = tmp;
-				//¸ÃÄæ×ªµÄÄæ×ªÍêÁË£¬Íê³ÉÉ¨Î²¹¤×÷
+				//è¯¥é€†è½¬çš„é€†è½¬å®Œäº†ï¼Œå®Œæˆæ‰«å°¾å·¥ä½œ
 				if(i==n) {
-					if(pre_m!=null) { //Èç¹ûm==1
+					if(pre_m!=null) { //å¦‚æœm==1
 						pre_m.next = pre_p;
 					}else {
 						head = pre_p;
@@ -89,22 +89,22 @@ public class Solution {
 	
 	/*
 	 * Odd Even Linked List
-	 * ¸ø¶¨Ò»¸öµ¥Á´±í£¬°ÑËùÓĞµÄÆæÊı½ÚµãºÍÅ¼Êı½Úµã·Ö±ğÅÅÔÚÒ»Æğ¡£Çë×¢Òâ£¬ÕâÀïµÄÆæÊı½ÚµãºÍÅ¼Êı½ÚµãÖ¸µÄÊÇ½Úµã±àºÅµÄÆæÅ¼ĞÔ£¬¶ø²»ÊÇ½ÚµãµÄÖµµÄÆæÅ¼ĞÔ¡£
+	 * ç»™å®šä¸€ä¸ªå•é“¾è¡¨ï¼ŒæŠŠæ‰€æœ‰çš„å¥‡æ•°èŠ‚ç‚¹å’Œå¶æ•°èŠ‚ç‚¹åˆ†åˆ«æ’åœ¨ä¸€èµ·ã€‚è¯·æ³¨æ„ï¼Œè¿™é‡Œçš„å¥‡æ•°èŠ‚ç‚¹å’Œå¶æ•°èŠ‚ç‚¹æŒ‡çš„æ˜¯èŠ‚ç‚¹ç¼–å·çš„å¥‡å¶æ€§ï¼Œè€Œä¸æ˜¯èŠ‚ç‚¹çš„å€¼çš„å¥‡å¶æ€§ã€‚
 	 * 
-	 * ÎÒµÄË¼Â·£ºÉèÖÃÒ»¸öÖ¸Õëp½øĞĞ±éÀú£¬½«Ã¿Ò»¸ö½áµãµÄnextÖ¸Õë¶¼Ö¸ÏòÏÂÏÂ¸ö½áµã¡£
+	 * æˆ‘çš„æ€è·¯ï¼šè®¾ç½®ä¸€ä¸ªæŒ‡é’ˆpè¿›è¡Œéå†ï¼Œå°†æ¯ä¸€ä¸ªç»“ç‚¹çš„nextæŒ‡é’ˆéƒ½æŒ‡å‘ä¸‹ä¸‹ä¸ªç»“ç‚¹ã€‚
 	 */
 	static ListNode oddevenList(ListNode head) {
 		if(head==null) return head;
 		
-		ListNode evenhead = head.next;//Å¼Êı½áµãµÄÍ·Ö¸Õë
+		ListNode evenhead = head.next;//å¶æ•°ç»“ç‚¹çš„å¤´æŒ‡é’ˆ
 		ListNode p = head;
-		ListNode oddTail = head;//Ö¸ÏòÆæÊı½áµãµÄÎ²½áµã
+		ListNode oddTail = head;//æŒ‡å‘å¥‡æ•°ç»“ç‚¹çš„å°¾ç»“ç‚¹
 		
 		for(int i=1;;i++) {
 			if(i%2==1) {
 				oddTail = p;
 			}
-			//µ±pÖ¸Ïò×îºóÒ»¸ö½áµã
+			//å½“pæŒ‡å‘æœ€åä¸€ä¸ªç»“ç‚¹
 			if(p.next==null) {
 				oddTail.next = evenhead;
 				break;
@@ -119,10 +119,10 @@ public class Solution {
 	
 	/*
 	 * Partition List
-	 * ¸ø¶¨Ò»¸öÁ´±íºÍÒ»¸öÌØ¶¨Öµ x£¬¶ÔÁ´±í½øĞĞ·Ö¸ô£¬Ê¹µÃËùÓĞĞ¡ÓÚ x µÄ½Úµã¶¼ÔÚ´óÓÚ»òµÈÓÚ x µÄ½ÚµãÖ®Ç°¡£
-	 * ÄãÓ¦µ±±£ÁôÁ½¸ö·ÖÇøÖĞÃ¿¸ö½ÚµãµÄ³õÊ¼Ïà¶ÔÎ»ÖÃ¡£
+	 * ç»™å®šä¸€ä¸ªé“¾è¡¨å’Œä¸€ä¸ªç‰¹å®šå€¼ xï¼Œå¯¹é“¾è¡¨è¿›è¡Œåˆ†éš”ï¼Œä½¿å¾—æ‰€æœ‰å°äº x çš„èŠ‚ç‚¹éƒ½åœ¨å¤§äºæˆ–ç­‰äº x çš„èŠ‚ç‚¹ä¹‹å‰ã€‚
+	 * ä½ åº”å½“ä¿ç•™ä¸¤ä¸ªåˆ†åŒºä¸­æ¯ä¸ªèŠ‚ç‚¹çš„åˆå§‹ç›¸å¯¹ä½ç½®ã€‚
 	 * 
-	 * Ë¼Â·£ºÉèÖÃÁ½¸ö¿ÕÁ´±í£¬Ò»¸ö·ÅĞ¡ÓÚxµÄ½áµã£¬ÁíÒ»¸ö·Å´óÓÚµÈÓÚxµÄ½áµã
+	 * æ€è·¯ï¼šè®¾ç½®ä¸¤ä¸ªç©ºé“¾è¡¨ï¼Œä¸€ä¸ªæ”¾å°äºxçš„ç»“ç‚¹ï¼Œå¦ä¸€ä¸ªæ”¾å¤§äºç­‰äºxçš„ç»“ç‚¹
 	 */
 	
 	static ListNode partitionList(ListNode head, int x) {
@@ -151,7 +151,7 @@ public class Solution {
 	 * Remove Duplicates from Sorted List
 	 * Given a sorted linked list, delete all duplicates such that each element appear only once.
 	 * 
-	 * ÉèÖÃÁ½¸öÖ¸Õë½øĞĞ±È½Ï£¬±éÀúÒ»±é¼´¿É
+	 * è®¾ç½®ä¸¤ä¸ªæŒ‡é’ˆè¿›è¡Œæ¯”è¾ƒï¼Œéå†ä¸€éå³å¯
 	 */
 	static ListNode deleteDuplicates(ListNode head) {
         if (head == null) return null;
@@ -172,8 +172,8 @@ public class Solution {
 For example, Given 1->2->3->4, you should return the list as 2->1->4->3.
 Your algorithm should use only constant space. You may not modify the values in the list, only nodes itself can be changed.
 
-Ö±½ÓÄ£Äâ£¬ÉèÖÃÍ·½áµã£¬Á½¸öÖ¸Õë£¬preÖ¸ÏòÁ½Á½½»»»µÄÉÏÒ»¸ö£¬pÖ¸ÏòÁ½Á½½»»»µÄµÚÒ»¸ö£¬»­Í¼ÈİÒ×Àí½â
-µİ¹éÒ²¿ÉÒÔ×ö
+ç›´æ¥æ¨¡æ‹Ÿï¼Œè®¾ç½®å¤´ç»“ç‚¹ï¼Œä¸¤ä¸ªæŒ‡é’ˆï¼ŒpreæŒ‡å‘ä¸¤ä¸¤äº¤æ¢çš„ä¸Šä¸€ä¸ªï¼ŒpæŒ‡å‘ä¸¤ä¸¤äº¤æ¢çš„ç¬¬ä¸€ä¸ªï¼Œç”»å›¾å®¹æ˜“ç†è§£
+é€’å½’ä¹Ÿå¯ä»¥åš
 	 */
 	static ListNode swapPairs(ListNode head) {
 		ListNode newHead = new ListNode(0);
@@ -192,13 +192,90 @@ Your algorithm should use only constant space. You may not modify the values in 
 		
 		return newHead.next;
 	}
+	/*
+	 * Reverse Nodes in k-Group
+æè¿°
+Given a linked list, reverse the nodes of a linked list k at a time and return its modified list.
+If the number of nodes is not a multiple of k then left-out nodes in the end should remain as it is.
+You may not alter the values in the nodes, only nodes itself may be changed.
+Only constant memory is allowed.
+For example, Given this linked list: 1->2->3->4->5
+For k = 2, you should return: 2->1->4->3->5
+For k = 3, you should return: 3->2->1->4->5
+æ€è·¯ï¼šæŒ‰ç…§é¢˜æ„ç›´æ¥æ¨¡æ‹Ÿï¼Œé¦–å…ˆå°†ç¬¬ä¸€ç»„kä¸ªé“¾è¡¨ç¿»è½¬ï¼Œå†å°†ä¸‹ä¸€ç»„kä¸ªç¿»è½¬ï¼Œ
+	 */
+	static ListNode reverseKGroup(ListNode head, int k) {
+        if(head==null || k<2) return head;
+        ListNode pre = new ListNode(0);
+        pre.next = head;
+        ListNode first = head;
+        ListNode last = head;
+        //ç¿»è½¬ä¸€ç»„æ—¶ï¼Œfirstå’Œlastéƒ½æŒ‡å‘kä¸ªçš„ç¬¬ä¸€ä¸ª
+        while(last!=null) {
+        	for(int i=1;i<k&&last!=null;i++)
+        		last=last.next;//æ‰¾åˆ°è¿™ç»„kä¸ªæœ€åä¸€ä¸ª
+        	if(last!=null) {//è¿™ä¸€ç»„æœ‰kä¸ª
+        		ListNode tmp = first;
+        		if(first==head) head=last;//å¤„ç†ç¬¬ä¸€ç»„kä¸ªçš„å¤´æŒ‡é’ˆ
+        		while(first!=last) {
+        			pre.next = first.next;
+        			first.next = last.next;
+        			last.next = first;
+        			first = pre.next;
+        		}
+        		pre = tmp;
+        		first = last = pre.next;
+        	}
+        }
+        return head;
+    }
 	
+	/*
+	 * 
+	 * Remove Nth Node From End of List
+	 * ç»™å®šä¸€ä¸ªé“¾è¡¨ï¼Œåˆ é™¤é“¾è¡¨çš„å€’æ•°ç¬¬Â nÂ ä¸ªèŠ‚ç‚¹ï¼Œå¹¶ä¸”è¿”å›é“¾è¡¨çš„å¤´ç»“ç‚¹ã€‚
+
+ç¤ºä¾‹ï¼š
+
+ç»™å®šä¸€ä¸ªé“¾è¡¨: 1->2->3->4->5, å’Œ n = 2.
+
+å½“åˆ é™¤äº†å€’æ•°ç¬¬äºŒä¸ªèŠ‚ç‚¹åï¼Œé“¾è¡¨å˜ä¸º 1->2->3->5.
+è¯´æ˜ï¼š
+
+ç»™å®šçš„ nÂ ä¿è¯æ˜¯æœ‰æ•ˆçš„ã€‚
+
+è¿›é˜¶ï¼š
+
+ä½ èƒ½å°è¯•ä½¿ç”¨ä¸€è¶Ÿæ‰«æå®ç°å—ï¼Ÿ
+
+		//æ³¨æ„è¾¹ç•Œæ¡ä»¶ï¼Œè‹¥åˆ é™¤çš„æ˜¯ç¬¬ä¸€ä¸ªå…ƒç´ ï¼Œåˆ™å¤„ç†èµ·æ¥æ¯”è¾ƒéº»çƒ¦ï¼Œç”¨äº†å¥½å¤šè¾…åŠ©æŒ‡é’ˆ
+	 * */
+	
+	public static ListNode removeNthFromEnd(ListNode head, int n) {
+        if(head==null) return head;
+        ListNode p = head;
+        ListNode q = head;
+        ListNode beforeHead = new ListNode(0);
+        ListNode pre = beforeHead;
+        pre.next = head;
+        
+        for(int i=0;i<n&&pre!=null;i++) {
+        	q = q.next;
+        }
+        
+        for(;q!=null;p = p.next, q = q.next, pre = pre.next);
+        
+        pre.next = p.next;
+        
+        return beforeHead.next;
+        
+    }
 
 	public static void main(String[] args) {
-		int[] a = new int[]{1,2,3,4,5};
+		int[] a = new int[]{1};
 		ListNode head = createNode(a);
 		print(head);
-		head = swapPairs(head);
+		head = removeNthFromEnd(head,1);
 		print(head);
 	}
 
