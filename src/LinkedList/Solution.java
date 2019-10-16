@@ -241,12 +241,8 @@ For k = 3, you should return: 3->2->1->4->5
 
 当删除了倒数第二个节点后，链表变为 1->2->3->5.
 说明：
-
 给定的 n 保证是有效的。
-
-进阶：
-
-你能尝试使用一趟扫描实现吗？
+使用一趟扫描实现吗？
 
 		//注意边界条件，若删除的是第一个元素，则处理起来比较麻烦，用了好多辅助指针
 	 * */
@@ -266,7 +262,6 @@ For k = 3, you should return: 3->2->1->4->5
         for(;q!=null;p = p.next, q = q.next, pre = pre.next);
         
         pre.next = p.next;
-        
         return beforeHead.next;
         
     }
